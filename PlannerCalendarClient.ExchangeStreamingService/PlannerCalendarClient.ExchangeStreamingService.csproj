@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{45D97143-E21C-49F3-A1C3-84297A2D1C03}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlannerCalendarClient.ExchangeStreamingService</RootNamespace>
+    <AssemblyName>PlannerCalendarClient.ExchangeStreamingService</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\JobCenterPlanner.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Affinity\BuildSubscriptionGroups.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="ExchangeStreamingConfig.cs" />
+    <Compile Include="Affinity\GroupAffinitySolver.cs" />
+    <Compile Include="PlannerResourceSubscribers.cs" />
+    <Compile Include="LoggingEvents.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="StreamingManager.cs" />
+    <Compile Include="StreamingSubscriber.cs" />
+    <Compile Include="SubscriptionGroupDictionary.cs" />
+    <Compile Include="SubscriberResourcesBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ews-managed-api-master\Microsoft.Exchange.WebServices.Data.csproj">
+      <Project>{f059972f-0561-4203-abb8-3abb41ccbe22}</Project>
+      <Name>Microsoft.Exchange.WebServices.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlannerCalendarClient.DataAccess\PlannerCalendarClient.DataAccess.csproj">
+      <Project>{661b1ffc-18a9-454b-b8f1-47237e9a486b}</Project>
+      <Name>PlannerCalendarClient.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlannerCalendarClient.ExchangeServiceCreator\PlannerCalendarClient.ExchangeServiceCreator.csproj">
+      <Project>{9e50ba8e-305c-4c20-81e6-19ffd3d0be5b}</Project>
+      <Name>PlannerCalendarClient.ExchangeServiceCreator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlannerCalendarClient.Logging\PlannerCalendarClient.Logging.csproj">
+      <Project>{1EC21C24-1BE1-4F4F-8F96-6306117A8BCD}</Project>
+      <Name>PlannerCalendarClient.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlannerCalendarClient.Utility\PlannerCalendarClient.Utility.csproj">
+      <Project>{47efda9a-4ee9-4b6f-a51c-5cd28fb6f386}</Project>
+      <Name>PlannerCalendarClient.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\JobCenterPlanner.snk">
+      <Link>JobCenterPlanner.snk</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

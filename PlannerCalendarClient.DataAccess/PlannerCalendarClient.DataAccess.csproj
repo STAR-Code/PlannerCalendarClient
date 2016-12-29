@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{661B1FFC-18A9-454B-B8F1-47237E9A486B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlannerCalendarClient.DataAccess</RootNamespace>
+    <AssemblyName>PlannerCalendarClient.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\JobCenterPlanner.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CalendarEvent.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientDbEntitiesFactory.cs" />
+    <Compile Include="ClientEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Constants.cs" />
+    <Compile Include="ECSClientExchangeDbEntities.cs" />
+    <Compile Include="IClientDbEntitiesFactory.cs" />
+    <Compile Include="IECSClientExchangeDbEntities.cs" />
+    <Compile Include="LoggingEvents.cs" />
+    <Compile Include="Notification.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationLog.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlannerResource.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlannerResourceBlacklist.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlannerResourcePartial.cs" />
+    <Compile Include="PlannerResourceWhitelist.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCallReferenceLog.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceUserCredential.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subscription.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SyncLog.cs">
+      <DependentUpon>ClientEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SyncLogPartial.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\JobCenterPlanner.snk">
+      <Link>JobCenterPlanner.snk</Link>
+    </None>
+    <None Include="App.config" />
+    <EntityDeploy Include="ClientEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ClientEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ClientEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClientEntities.edmx</DependentUpon>
+      <LastGenOutput>ClientEntities.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ClientEntities.edmx.diagram">
+      <DependentUpon>ClientEntities.edmx</DependentUpon>
+    </None>
+    <None Include="ClientEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ClientEntities.edmx</DependentUpon>
+      <LastGenOutput>ClientEntities.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlannerCalendarClient.Logging\PlannerCalendarClient.Logging.csproj">
+      <Project>{1ec21c24-1be1-4f4f-8f96-6306117a8bcd}</Project>
+      <Name>PlannerCalendarClient.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

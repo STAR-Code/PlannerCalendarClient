@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PlannerCalendarClient.DataAccess.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CalendarEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailAddress" Type="nvarchar" MaxLength="260" Nullable="false" />
+          <Property Name="CalId" Type="nvarchar" MaxLength="512" Nullable="false" />
+          <Property Name="PlannerCalendarEventId" Type="uniqueidentifier" />
+          <Property Name="PlannerResourceId" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EwsId" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="EwsTimestamp" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ReceiveTime" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="NotificationLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="EwsId" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="EwsTimestamp" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ReceiveTime" Type="datetime2" Precision="7" />
+          <Property Name="ProcessedTime" Type="datetime2" Precision="7" />
+          <Property Name="ResponseText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PlannerResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailAddress" Type="nvarchar" MaxLength="260" Nullable="false" />
+          <Property Name="PlannerResourceId" Type="uniqueidentifier" />
+          <Property Name="GroupAffinity" Type="nvarchar" MaxLength="260" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdatedDate" Type="datetime2" Precision="7" />
+          <Property Name="DeletedDate" Type="datetime2" Precision="7" />
+          <Property Name="ErrorCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorDescription" Type="nvarchar" MaxLength="512" />
+          <Property Name="ErrorDate" Type="datetime2" Precision="7" />
+          <Property Name="LastFullSync" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="PlannerResourceBlacklist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailAddress" Type="nvarchar" MaxLength="260" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="PlannerResourceSubscription">
+          <Key>
+            <PropertyRef Name="PlannerResourceId" />
+          </Key>
+          <Property Name="PlannerResourceId" Type="bigint" Nullable="false" />
+          <Property Name="SubscriptionId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="PlannerResourceWhitelist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MailAddress" Type="nvarchar" MaxLength="260" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceCallReferenceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceCallResponseReferenceId" Type="uniqueidentifier" />
+          <Property Name="Operation" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CallStarted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CallEnded" Type="datetime2" Precision="7" />
+          <Property Name="Success" Type="bit" />
+          <Property Name="ResponseText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ServiceUserCredential">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="260" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupAffinity" Type="nvarchar" MaxLength="260" />
+          <Property Name="ServiceUserCredentialId" Type="bigint" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+          <Property Name="UpdatedDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="SyncLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CalendarEventId" Type="bigint" Nullable="false" />
+          <Property Name="CalendarStart" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CalendarEnd" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Operation" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="SyncDate" Type="datetime2" Precision="7" />
+          <Property Name="ServiceCallReferenceLogId" Type="bigint" />
+          <Property Name="PlannerSyncSuccess" Type="bit" />
+          <Property Name="PlannerSyncResponse" Type="nvarchar(max)" />
+          <Property Name="PlannerEventErrorCode" Type="int" />
+          <Property Name="NotificationLogId" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ECSClientExchangeDb.dbo.vActiveResourcesForSynchronization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <Association Name="FK_PlannerResourceSubscription_PlannerResource">
+          <End Role="PlannerResource" Type="Self.PlannerResource" Multiplicity="1" />
+          <End Role="PlannerResourceSubscription" Type="Self.PlannerResourceSubscription" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PlannerResource">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlannerResourceSubscription">
+              <PropertyRef Name="PlannerResourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlannerResourceSubscription_Subscription">
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="1" />
+          <End Role="PlannerResourceSubscription" Type="Self.PlannerResourceSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscription">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlannerResourceSubscription">
+              <PropertyRef Name="SubscriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscription_ServiceUserCredential">
+          <End Role="ServiceUserCredential" Type="Self.ServiceUserCredential" Multiplicity="0..1" />
+          <End Role="Subscription" Type="Self.Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceUserCredential">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="ServiceUserCredentialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SyncLog_CalendarEvent">
+          <End Role="CalendarEvent" Type="Self.CalendarEvent" Multiplicity="1" />
+          <End Role="SyncLog" Type="Self.SyncLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SyncLog">
+              <PropertyRef Name="CalendarEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SyncLog_ServiceCallReferenceLog">
+          <End Role="ServiceCallReferenceLog" Type="Self.ServiceCallReferenceLog" Multiplicity="0..1" />
+          <End Role="SyncLog" Type="Self.SyncLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceCallReferenceLog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SyncLog">
+              <PropertyRef Name="ServiceCallReferenceLogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PlannerCalendarClientDataAccessStoreContainer">
+          <EntitySet Name="CalendarEvent" EntityType="Self.CalendarEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationLog" EntityType="Self.NotificationLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlannerResource" EntityType="Self.PlannerResource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlannerResourceBlacklist" EntityType="Self.PlannerResourceBlacklist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlannerResourceSubscription" EntityType="Self.PlannerResourceSubscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlannerResourceWhitelist" EntityType="Self.PlannerResourceWhitelist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceCallReferenceLog" EntityType="Self.ServiceCallReferenceLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceUserCredential" EntityType="Self.ServiceUserCredential" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscription" EntityType="Self.Subscription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SyncLog" EntityType="Self.SyncLog" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PlannerResourceSubscription_PlannerResource" Association="Self.FK_PlannerResourceSubscription_PlannerResource">
+            <End Role="PlannerResource" EntitySet="PlannerResource" />
+            <End Role="PlannerResourceSubscription" EntitySet="PlannerResourceSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlannerResourceSubscription_Subscription" Association="Self.FK_PlannerResourceSubscription_Subscription">
+            <End Role="Subscription" EntitySet="Subscription" />
+            <End Role="PlannerResourceSubscription" EntitySet="PlannerResourceSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscription_ServiceUserCredential" Association="Self.FK_Subscription_ServiceUserCredential">
+            <End Role="ServiceUserCredential" EntitySet="ServiceUserCredential" />
+            <End Role="Subscription" EntitySet="Subscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SyncLog_CalendarEvent" Association="Self.FK_SyncLog_CalendarEvent">
+            <End Role="CalendarEvent" EntitySet="CalendarEvent" />
+            <End Role="SyncLog" EntitySet="SyncLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SyncLog_ServiceCallReferenceLog" Association="Self.FK_SyncLog_ServiceCallReferenceLog">
+            <End Role="ServiceCallReferenceLog" EntitySet="ServiceCallReferenceLog" />
+            <End Role="SyncLog" EntitySet="SyncLog" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PlannerCalendarClient.DataAccess" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ECSClientExchangeDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CalendarEvents" EntityType="PlannerCalendarClient.DataAccess.CalendarEvent" />
+          <EntitySet Name="Notifications" EntityType="PlannerCalendarClient.DataAccess.Notification" />
+          <EntitySet Name="PlannerResources" EntityType="PlannerCalendarClient.DataAccess.PlannerResource" />
+          <EntitySet Name="ServiceCallReferenceLogs" EntityType="PlannerCalendarClient.DataAccess.ServiceCallReferenceLog" />
+          <EntitySet Name="SyncLogs" EntityType="PlannerCalendarClient.DataAccess.SyncLog" />
+          <AssociationSet Name="FK_SyncLog_CalendarEvent" Association="PlannerCalendarClient.DataAccess.FK_SyncLog_CalendarEvent">
+            <End Role="CalendarEvent" EntitySet="CalendarEvents" />
+            <End Role="SyncLog" EntitySet="SyncLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SyncLog_ServiceCallReferenceLog" Association="PlannerCalendarClient.DataAccess.FK_SyncLog_ServiceCallReferenceLog">
+            <End Role="ServiceCallReferenceLog" EntitySet="ServiceCallReferenceLogs" />
+            <End Role="SyncLog" EntitySet="SyncLogs" />
+          </AssociationSet>
+          <EntitySet Name="ServiceUserCredentials" EntityType="PlannerCalendarClient.DataAccess.ServiceUserCredential" />
+          <EntitySet Name="Subscriptions" EntityType="PlannerCalendarClient.DataAccess.Subscription" />
+          <AssociationSet Name="FK_Subscription_ServiceUserCredential" Association="PlannerCalendarClient.DataAccess.FK_Subscription_ServiceUserCredential">
+            <End Role="ServiceUserCredential" EntitySet="ServiceUserCredentials" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="PlannerResourceSubscription" Association="PlannerCalendarClient.DataAccess.PlannerResourceSubscription">
+            <End Role="PlannerResource" EntitySet="PlannerResources" />
+            <End Role="Subscription" EntitySet="Subscriptions" />
+          </AssociationSet>
+          <EntitySet Name="PlannerResourceWhitelists" EntityType="PlannerCalendarClient.DataAccess.PlannerResourceWhitelist" />
+          <EntitySet Name="PlannerResourceBlacklists" EntityType="PlannerCalendarClient.DataAccess.PlannerResourceBlacklist" />
+          <EntitySet Name="NotificationLogs" EntityType="PlannerCalendarClient.DataAccess.NotificationLog" />
+          </EntityContainer>
+        <EntityType Name="CalendarEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailAddress" Type="String" Nullable="false" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="CalId" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="PlannerCalendarEventId" Type="Guid" />
+          <Property Name="PlannerResourceId" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SyncLogs" Relationship="PlannerCalendarClient.DataAccess.FK_SyncLog_CalendarEvent" FromRole="CalendarEvent" ToRole="SyncLog" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EwsId" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="EwsTimestamp" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ReceiveTime" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="PlannerResource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailAddress" Type="String" Nullable="false" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="PlannerResourceId" Type="Guid" />
+          <Property Name="GroupAffinity" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="7" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Subscription" Relationship="PlannerCalendarClient.DataAccess.PlannerResourceSubscription" FromRole="PlannerResource" ToRole="Subscription" />
+          <Property Name="ErrorCode" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ErrorDescription" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorDate" Type="DateTime" Precision="7" />
+          <Property Name="LastFullSync" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="ServiceCallReferenceLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceCallResponseReferenceId" Type="Guid" />
+          <Property Name="Operation" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CallStarted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CallEnded" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="SyncLogs" Relationship="PlannerCalendarClient.DataAccess.FK_SyncLog_ServiceCallReferenceLog" FromRole="ServiceCallReferenceLog" ToRole="SyncLog" />
+          <Property Name="Success" Type="Boolean" />
+          <Property Name="ResponseText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SyncLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CalendarEventId" Type="Int64" Nullable="false" />
+          <Property Name="CalendarStart" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CalendarEnd" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Operation" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SyncDate" Type="DateTime" Precision="7" />
+          <Property Name="ServiceCallReferenceLogId" Type="Int64" />
+          <Property Name="PlannerSyncSuccess" Type="Boolean" />
+          <Property Name="PlannerSyncResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlannerEventErrorCode" Type="Int32" />
+          <NavigationProperty Name="CalendarEvent" Relationship="PlannerCalendarClient.DataAccess.FK_SyncLog_CalendarEvent" FromRole="SyncLog" ToRole="CalendarEvent" />
+          <NavigationProperty Name="ServiceCallReferenceLog" Relationship="PlannerCalendarClient.DataAccess.FK_SyncLog_ServiceCallReferenceLog" FromRole="SyncLog" ToRole="ServiceCallReferenceLog" />
+          <Property Name="NotificationLogId" Type="Int64" />
+        </EntityType>
+        <Association Name="FK_SyncLog_CalendarEvent">
+          <End Type="PlannerCalendarClient.DataAccess.CalendarEvent" Role="CalendarEvent" Multiplicity="1" />
+          <End Type="PlannerCalendarClient.DataAccess.SyncLog" Role="SyncLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CalendarEvent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SyncLog">
+              <PropertyRef Name="CalendarEventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SyncLog_ServiceCallReferenceLog">
+          <End Type="PlannerCalendarClient.DataAccess.ServiceCallReferenceLog" Role="ServiceCallReferenceLog" Multiplicity="0..1" />
+          <End Type="PlannerCalendarClient.DataAccess.SyncLog" Role="SyncLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceCallReferenceLog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SyncLog">
+              <PropertyRef Name="ServiceCallReferenceLogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ServiceUserCredential">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Subscriptions" Relationship="PlannerCalendarClient.DataAccess.FK_Subscription_ServiceUserCredential" FromRole="ServiceUserCredential" ToRole="Subscription" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupAffinity" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceUserCredentialId" Type="Int64" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServiceUserCredential" Relationship="PlannerCalendarClient.DataAccess.FK_Subscription_ServiceUserCredential" FromRole="Subscription" ToRole="ServiceUserCredential" />
+          <NavigationProperty Name="PlannerResources" Relationship="PlannerCalendarClient.DataAccess.PlannerResourceSubscription" FromRole="Subscription" ToRole="PlannerResource" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="7" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Subscription_ServiceUserCredential">
+          <End Type="PlannerCalendarClient.DataAccess.ServiceUserCredential" Role="ServiceUserCredential" Multiplicity="0..1" />
+          <End Type="PlannerCalendarClient.DataAccess.Subscription" Role="Subscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceUserCredential">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscription">
+              <PropertyRef Name="ServiceUserCredentialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlannerResourceSubscription">
+          <End Type="PlannerCalendarClient.DataAccess.PlannerResource" Role="PlannerResource" Multiplicity="*" />
+          <End Type="PlannerCalendarClient.DataAccess.Subscription" Role="Subscription" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="PlannerResourceWhitelist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MailAddress" Type="String" Nullable="false" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="PlannerResourceBlacklist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="MailAddress" Type="String" Nullable="false" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NotificationLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="EwsId" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="EwsTimestamp" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ReceiveTime" Type="DateTime" Precision="7" />
+          <Property Name="ProcessedTime" Type="DateTime" Precision="7" />
+          <Property Name="ResponseText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PlannerCalendarClientDataAccessStoreContainer" CdmEntityContainer="ECSClientExchangeDbEntities">
+          <EntitySetMapping Name="CalendarEvents">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.CalendarEvent">
+              <MappingFragment StoreEntitySet="CalendarEvent">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PlannerResourceId" ColumnName="PlannerResourceId" />
+                <ScalarProperty Name="PlannerCalendarEventId" ColumnName="PlannerCalendarEventId" />
+                <ScalarProperty Name="CalId" ColumnName="CalId" />
+                <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="ReceiveTime" ColumnName="ReceiveTime" />
+                <ScalarProperty Name="EwsTimestamp" ColumnName="EwsTimestamp" />
+                <ScalarProperty Name="EwsId" ColumnName="EwsId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlannerResources">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.PlannerResource">
+              <MappingFragment StoreEntitySet="PlannerResource">
+                <ScalarProperty Name="LastFullSync" ColumnName="LastFullSync" />
+                <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+                <ScalarProperty Name="ErrorDescription" ColumnName="ErrorDescription" />
+                <ScalarProperty Name="ErrorCode" ColumnName="ErrorCode" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="GroupAffinity" ColumnName="GroupAffinity" />
+                <ScalarProperty Name="PlannerResourceId" ColumnName="PlannerResourceId" />
+                <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceCallReferenceLogs">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.ServiceCallReferenceLog">
+              <MappingFragment StoreEntitySet="ServiceCallReferenceLog">
+                <ScalarProperty Name="ResponseText" ColumnName="ResponseText" />
+                <ScalarProperty Name="Success" ColumnName="Success" />
+                <ScalarProperty Name="CallEnded" ColumnName="CallEnded" />
+                <ScalarProperty Name="CallStarted" ColumnName="CallStarted" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="ServiceCallResponseReferenceId" ColumnName="ServiceCallResponseReferenceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SyncLogs">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.SyncLog">
+              <MappingFragment StoreEntitySet="SyncLog">
+                <ScalarProperty Name="NotificationLogId" ColumnName="NotificationLogId" />
+                <ScalarProperty Name="PlannerEventErrorCode" ColumnName="PlannerEventErrorCode" />
+                <ScalarProperty Name="PlannerSyncResponse" ColumnName="PlannerSyncResponse" />
+                <ScalarProperty Name="PlannerSyncSuccess" ColumnName="PlannerSyncSuccess" />
+                <ScalarProperty Name="ServiceCallReferenceLogId" ColumnName="ServiceCallReferenceLogId" />
+                <ScalarProperty Name="SyncDate" ColumnName="SyncDate" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="CalendarEnd" ColumnName="CalendarEnd" />
+                <ScalarProperty Name="CalendarStart" ColumnName="CalendarStart" />
+                <ScalarProperty Name="CalendarEventId" ColumnName="CalendarEventId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceUserCredentials">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.ServiceUserCredential">
+              <MappingFragment StoreEntitySet="ServiceUserCredential">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscriptions">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.Subscription">
+              <MappingFragment StoreEntitySet="Subscription">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ServiceUserCredentialId" ColumnName="ServiceUserCredentialId" />
+                <ScalarProperty Name="GroupAffinity" ColumnName="GroupAffinity" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PlannerResourceSubscription" TypeName="PlannerCalendarClient.DataAccess.PlannerResourceSubscription" StoreEntitySet="PlannerResourceSubscription">
+            <EndProperty Name="Subscription">
+              <ScalarProperty Name="Id" ColumnName="SubscriptionId" />
+            </EndProperty>
+            <EndProperty Name="PlannerResource">
+              <ScalarProperty Name="Id" ColumnName="PlannerResourceId" />
+            </EndProperty>
+            <Condition ColumnName="SubscriptionId" IsNull="false" />
+          </AssociationSetMapping>
+          <EntitySetMapping Name="PlannerResourceWhitelists">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.PlannerResourceWhitelist">
+              <MappingFragment StoreEntitySet="PlannerResourceWhitelist">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlannerResourceBlacklists">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.PlannerResourceBlacklist">
+              <MappingFragment StoreEntitySet="PlannerResourceBlacklist">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationLogs">
+            <EntityTypeMapping TypeName="PlannerCalendarClient.DataAccess.NotificationLog">
+              <MappingFragment StoreEntitySet="NotificationLog">
+                <ScalarProperty Name="ResponseText" ColumnName="ResponseText" />
+                <ScalarProperty Name="ProcessedTime" ColumnName="ProcessedTime" />
+                <ScalarProperty Name="ReceiveTime" ColumnName="ReceiveTime" />
+                <ScalarProperty Name="EwsTimestamp" ColumnName="EwsTimestamp" />
+                <ScalarProperty Name="EwsId" ColumnName="EwsId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

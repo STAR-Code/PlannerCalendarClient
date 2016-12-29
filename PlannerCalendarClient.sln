@@ -1,0 +1,132 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.Utility", "PlannerCalendarClient.Utility\PlannerCalendarClient.Utility.csproj", "{47EFDA9A-4EE9-4B6F-A51C-5CD28FB6F386}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.ServiceDfdg", "PlannerCalendarClient.ServiceDfdg\PlannerCalendarClient.ServiceDfdg.csproj", "{5E09112C-E94B-444B-B527-A94023DF46CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.ExchangeStreamingService", "PlannerCalendarClient.ExchangeStreamingService\PlannerCalendarClient.ExchangeStreamingService.csproj", "{45D97143-E21C-49F3-A1C3-84297A2D1C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.ExchangeServiceCreator", "PlannerCalendarClient.ExchangeServiceCreator\PlannerCalendarClient.ExchangeServiceCreator.csproj", "{9E50BA8E-305C-4C20-81E6-19FFD3D0BE5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.ExchangeListenerService", "PlannerCalendarClient.ExchangeListenerService\PlannerCalendarClient.ExchangeListenerService.csproj", "{6D23E272-12B6-4996-B0F6-3AA0BE4852CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Exchange.WebServices.Data", "ews-managed-api-master\Microsoft.Exchange.WebServices.Data.csproj", "{F059972F-0561-4203-ABB8-3ABB41CCBE22}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PlannerCalendarClient.Database", "PlannerCalendarClient.Database\PlannerCalendarClient.Database.sqlproj", "{9FF21429-C87D-446B-8742-0DD57C29F496}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.PlannerCommunicatorService", "PlannerCalendarClient.PlannerCommunicatorService\PlannerCalendarClient.PlannerCommunicatorService.csproj", "{43279989-2EF9-4634-8086-F8AB01207941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.DataAccess", "PlannerCalendarClient.DataAccess\PlannerCalendarClient.DataAccess.csproj", "{661B1FFC-18A9-454B-B8F1-47237E9A486B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.Logging", "PlannerCalendarClient.Logging\PlannerCalendarClient.Logging.csproj", "{1EC21C24-1BE1-4F4F-8F96-6306117A8BCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.EventProcessorService", "PlannerCalendarClient.EventProcessorService\PlannerCalendarClient.EventProcessorService.csproj", "{6314D0DA-D885-4D15-B7B2-8669652C8FB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlannerCalendarClient.UnitTest", "PlannerCalendarClient.UnitTest\PlannerCalendarClient.UnitTest.csproj", "{A3CFFC3A-5C23-4BE6-AF8C-1C4F106B04CA}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 13
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://appdkba1168:8080/projects
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PlannerCalendarClient.Utility\\PlannerCalendarClient.Utility.csproj
+		SccProjectName1 = PlannerCalendarClient.Utility
+		SccLocalPath1 = PlannerCalendarClient.Utility
+		SccProjectUniqueName2 = PlannerCalendarClient.ServiceDfdg\\PlannerCalendarClient.ServiceDfdg.csproj
+		SccProjectName2 = PlannerCalendarClient.ServiceDfdg
+		SccLocalPath2 = PlannerCalendarClient.ServiceDfdg
+		SccProjectUniqueName3 = PlannerCalendarClient.ExchangeStreamingService\\PlannerCalendarClient.ExchangeStreamingService.csproj
+		SccProjectName3 = PlannerCalendarClient.ExchangeStreamingService
+		SccLocalPath3 = PlannerCalendarClient.ExchangeStreamingService
+		SccProjectUniqueName4 = PlannerCalendarClient.ExchangeServiceCreator\\PlannerCalendarClient.ExchangeServiceCreator.csproj
+		SccProjectName4 = PlannerCalendarClient.ExchangeServiceCreator
+		SccLocalPath4 = PlannerCalendarClient.ExchangeServiceCreator
+		SccProjectUniqueName5 = PlannerCalendarClient.ExchangeListenerService\\PlannerCalendarClient.ExchangeListenerService.csproj
+		SccProjectName5 = PlannerCalendarClient.ExchangeListenerService
+		SccLocalPath5 = PlannerCalendarClient.ExchangeListenerService
+		SccProjectUniqueName6 = ews-managed-api-master\\Microsoft.Exchange.WebServices.Data.csproj
+		SccProjectName6 = ews-managed-api-master
+		SccLocalPath6 = ews-managed-api-master
+		SccProjectUniqueName7 = PlannerCalendarClient.Database\\PlannerCalendarClient.Database.sqlproj
+		SccProjectName7 = PlannerCalendarClient.Database
+		SccLocalPath7 = PlannerCalendarClient.Database
+		SccProjectUniqueName8 = PlannerCalendarClient.PlannerCommunicatorService\\PlannerCalendarClient.PlannerCommunicatorService.csproj
+		SccProjectName8 = PlannerCalendarClient.PlannerCommunicatorService
+		SccLocalPath8 = PlannerCalendarClient.PlannerCommunicatorService
+		SccProjectUniqueName9 = PlannerCalendarClient.EventProcessorService\\PlannerCalendarClient.EventProcessorService.csproj
+		SccProjectName9 = PlannerCalendarClient.EventProcessorService
+		SccLocalPath9 = PlannerCalendarClient.EventProcessorService
+		SccProjectUniqueName10 = PlannerCalendarClient.DataAccess\\PlannerCalendarClient.DataAccess.csproj
+		SccProjectName10 = PlannerCalendarClient.DataAccess
+		SccLocalPath10 = PlannerCalendarClient.DataAccess
+		SccProjectUniqueName11 = PlannerCalendarClient.Logging\\PlannerCalendarClient.Logging.csproj
+		SccProjectName11 = PlannerCalendarClient.Logging
+		SccLocalPath11 = PlannerCalendarClient.Logging
+		SccProjectUniqueName12 = PlannerCalendarClient.UnitTest\\PlannerCalendarClient.UnitTest.csproj
+		SccProjectName12 = PlannerCalendarClient.UnitTest
+		SccLocalPath12 = PlannerCalendarClient.UnitTest
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47EFDA9A-4EE9-4B6F-A51C-5CD28FB6F386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47EFDA9A-4EE9-4B6F-A51C-5CD28FB6F386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47EFDA9A-4EE9-4B6F-A51C-5CD28FB6F386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47EFDA9A-4EE9-4B6F-A51C-5CD28FB6F386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E09112C-E94B-444B-B527-A94023DF46CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E09112C-E94B-444B-B527-A94023DF46CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E09112C-E94B-444B-B527-A94023DF46CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E09112C-E94B-444B-B527-A94023DF46CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45D97143-E21C-49F3-A1C3-84297A2D1C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45D97143-E21C-49F3-A1C3-84297A2D1C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45D97143-E21C-49F3-A1C3-84297A2D1C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45D97143-E21C-49F3-A1C3-84297A2D1C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E50BA8E-305C-4C20-81E6-19FFD3D0BE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E50BA8E-305C-4C20-81E6-19FFD3D0BE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E50BA8E-305C-4C20-81E6-19FFD3D0BE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E50BA8E-305C-4C20-81E6-19FFD3D0BE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D23E272-12B6-4996-B0F6-3AA0BE4852CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D23E272-12B6-4996-B0F6-3AA0BE4852CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D23E272-12B6-4996-B0F6-3AA0BE4852CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D23E272-12B6-4996-B0F6-3AA0BE4852CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F059972F-0561-4203-ABB8-3ABB41CCBE22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F059972F-0561-4203-ABB8-3ABB41CCBE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F059972F-0561-4203-ABB8-3ABB41CCBE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F059972F-0561-4203-ABB8-3ABB41CCBE22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF21429-C87D-446B-8742-0DD57C29F496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF21429-C87D-446B-8742-0DD57C29F496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF21429-C87D-446B-8742-0DD57C29F496}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9FF21429-C87D-446B-8742-0DD57C29F496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF21429-C87D-446B-8742-0DD57C29F496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF21429-C87D-446B-8742-0DD57C29F496}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{43279989-2EF9-4634-8086-F8AB01207941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43279989-2EF9-4634-8086-F8AB01207941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43279989-2EF9-4634-8086-F8AB01207941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43279989-2EF9-4634-8086-F8AB01207941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{661B1FFC-18A9-454B-B8F1-47237E9A486B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{661B1FFC-18A9-454B-B8F1-47237E9A486B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{661B1FFC-18A9-454B-B8F1-47237E9A486B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{661B1FFC-18A9-454B-B8F1-47237E9A486B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC21C24-1BE1-4F4F-8F96-6306117A8BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC21C24-1BE1-4F4F-8F96-6306117A8BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC21C24-1BE1-4F4F-8F96-6306117A8BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC21C24-1BE1-4F4F-8F96-6306117A8BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6314D0DA-D885-4D15-B7B2-8669652C8FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6314D0DA-D885-4D15-B7B2-8669652C8FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6314D0DA-D885-4D15-B7B2-8669652C8FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6314D0DA-D885-4D15-B7B2-8669652C8FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3CFFC3A-5C23-4BE6-AF8C-1C4F106B04CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3CFFC3A-5C23-4BE6-AF8C-1C4F106B04CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3CFFC3A-5C23-4BE6-AF8C-1C4F106B04CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3CFFC3A-5C23-4BE6-AF8C-1C4F106B04CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

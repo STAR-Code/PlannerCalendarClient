@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.StreamingManager" Collapsed="true">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAgABACIACAQAAFAAQBAAAAAAAAAAIAAAgCAEAAg=</HashCode>
+      <FileName>StreamingManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.StreamingSubscriber" Collapsed="true">
+    <Position X="3.5" Y="2.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAEAAIMAACKEEQAgAQABQBQoQQCAAAAAIBJAACAgBQA=</HashCode>
+      <FileName>StreamingSubscriber.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.SubscriberResourcesBase" Collapsed="true">
+    <Position X="2" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAgAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAI=</HashCode>
+      <FileName>SubscriberResourcesBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.Config">
+    <Position X="8" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="PlannerCalendarClient.ExchangeStreamingService.Config.ExchangeStreamingConfig" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ExchangeStreamingConfig.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAABAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExchangeStreamingConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.PlannerResourceSubscribers" Collapsed="true">
+    <Position X="1.5" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAABAAAAAAAAAAQAAAAAAI=</HashCode>
+      <FileName>PlannerResourceSubscribers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.Affinity.GroupAffinitySolver" Collapsed="true">
+    <Position X="6.5" Y="7" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAQAAAAAAAAAAAgBAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Affinity\GroupAffinitySolver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.Affinity.BuildSubscriptionGroups" Collapsed="true">
+    <Position X="4.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIEAgAAAAAABAAAAAQAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Affinity\BuildSubscriptionGroups.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlannerCalendarClient.ExchangeStreamingService.Affinity.SubscriptionGroupDictionary" Collapsed="true">
+    <Position X="6.5" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACCCCEAAAAAAABAAAAAAQAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Affinity\SubscriptionGroupDictionary.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="PlannerCalendarClient.ExchangeStreamingService.IExchangeStreamingConfig" Collapsed="true">
+    <Position X="8" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAIAAAAABABAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>ExchangeStreamingConfig.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="a77fd3c4-a135-4de5-bd66-3482ee60b80f" ChangeDateTime="05/27/2015 08:35:51">
+    <Property Name="ElementName" Value="[dbo].[CalendarEvent].[OriginMailAddress]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CalendarEvent]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MailAddress" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="599952a6-ee3d-4c92-a698-b3440d8d77c2" ChangeDateTime="05/27/2015 08:37:08">
+    <Property Name="ElementName" Value="[dbo].[CalendarEvent].[OriginId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CalendarEvent]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CalId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bf6b6302-e282-40fd-9ebf-59b8e8fbfb30" ChangeDateTime="05/27/2015 08:38:17">
+    <Property Name="ElementName" Value="[dbo].[SyncLog].[Timestamp]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SyncLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Created" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="73197c17-43f1-4223-9665-22dfc9e4490d" ChangeDateTime="05/27/2015 08:38:27">
+    <Property Name="ElementName" Value="[dbo].[SyncLog].[Created]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SyncLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="04dac2f5-f180-4e34-983b-e3b6578bbe9f" ChangeDateTime="05/27/2015 08:38:39">
+    <Property Name="ElementName" Value="[dbo].[CalendarEvent].[Created]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CalendarEvent]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="98b60ba4-307b-49b4-bbc1-bae7b0d27d89" ChangeDateTime="05/27/2015 08:47:57">
+    <Property Name="ElementName" Value="[dbo].[ServiceCallReferenceLog].[CalendarEventId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ServiceCallReferenceLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SyncLogId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a72c25eb-cc68-4643-8e6b-5e244f67603e" ChangeDateTime="05/27/2015 08:55:07">
+    <Property Name="ElementName" Value="[dbo].[PlannerResource].[Mail]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MailAddress" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9f40ff12-6b22-4278-a4d2-f15ac97fb630" ChangeDateTime="05/27/2015 08:55:21">
+    <Property Name="ElementName" Value="[dbo].[PlannerResource].[PlannerResourceID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PlannerResourceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="42084b3b-7d36-4008-afca-b598c1602517" ChangeDateTime="05/27/2015 08:55:39">
+    <Property Name="ElementName" Value="[dbo].[PlannerResource].[Grouping]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GroupAffinity" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dc738cfd-20c8-4215-8302-834ca12d6b87" ChangeDateTime="05/27/2015 08:56:41">
+    <Property Name="ElementName" Value="[dbo].[PlannerResource].[CreateDateTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a3732f96-6f97-4aae-ae7d-e50ed35f896e" ChangeDateTime="05/27/2015 08:56:44">
+    <Property Name="ElementName" Value="[dbo].[PlannerResource].[UpdateDateTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UpdatedDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="365ab873-b1b2-4e9d-af20-b70c229a28e4" ChangeDateTime="05/27/2015 08:56:48">
+    <Property Name="ElementName" Value="[dbo].[PlannerResource].[DeletedDateTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeletedDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a202e6a8-b257-447d-b878-5117bae2b0b1" ChangeDateTime="05/28/2015 11:45:14">
+    <Property Name="ElementName" Value="[dbo].[ServiceCallReferenceLog].[OperationName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ServiceCallReferenceLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Operation" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="deb4dc8e-d63d-429e-8070-b36fa6b20ec9" ChangeDateTime="05/28/2015 11:45:28">
+    <Property Name="ElementName" Value="[dbo].[SyncLog].[OperationName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SyncLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Operation" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0bbf4bf3-c490-4358-a7d6-3cce8f18dc63" ChangeDateTime="05/28/2015 13:52:24">
+    <Property Name="ElementName" Value="[dbo].[SubscriptionPlannerResource].[PlannerResourceID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SubscriptionPlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PlannerResourceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b453b6ac-5c72-4af9-b1fb-b9002d0c1735" ChangeDateTime="06/03/2015 14:15:11">
+    <Property Name="ElementName" Value="[dbo].[NotificationLog].[Message]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NotificationLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResponsText" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cc31a0f1-9499-4363-ac38-a3620398fb91" ChangeDateTime="06/04/2015 12:57:41">
+    <Property Name="ElementName" Value="[dbo].[PlannerResource].[StatusCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResource]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ErrorCode" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="504dce8b-90b5-432d-b0c4-1af3458e4ac2" ChangeDateTime="07/08/2015 07:59:16">
+    <Property Name="ElementName" Value="[dbo].[ServiceCallReferenceLog].[Seccess]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ServiceCallReferenceLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Success" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="26ea06a9-5e1f-4884-9d2c-e6fb67f455f8" ChangeDateTime="07/08/2015 07:59:21">
+    <Property Name="ElementName" Value="[dbo].[ServiceCallReferenceLog].[ResponsText]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ServiceCallReferenceLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResponseText" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c764e6f6-9f38-4787-bfe3-dc86eb1c615b" ChangeDateTime="07/08/2015 08:01:49">
+    <Property Name="ElementName" Value="[dbo].[NotificationLog].[ResponsText]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[NotificationLog]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResponseText" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9fe78be0-1f45-426c-9f26-284c4b35905f" ChangeDateTime="07/10/2015 08:54:24">
+    <Property Name="ElementName" Value="[dbo].[PlannerResourceBlacklist].[Reaspon]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PlannerResourceBlacklist]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Reason" />
+  </Operation>
+</Operations>

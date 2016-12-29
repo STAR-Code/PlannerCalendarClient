@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PlannerCalendarClient.PlannerCommunicatorService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="JobcenterNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">10100</Value>
+    </Setting>
+    <Setting Name="ResourceUpdateSchedule" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01:00;03:00;05:00;07:00;11:00;15:00;17:00;19:00;21:00;23:00</Value>
+    </Setting>
+    <Setting Name="CalendarEventUpdateInterval" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:00:20</Value>
+    </Setting>
+    <Setting Name="CalendarSynchronizationSchedule" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01:30;03:30;05:30;07:30;11:30;15:30;17:30;19:30;21:30;23:30</Value>
+    </Setting>
+    <Setting Name="CalendarEventsPeriodInMonths" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="RequestUserIdentifier" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CVR:55568510-FID:9100000000518</Value>
+    </Setting>
+    <Setting Name="MaxCalendarEventUpdatesPerCall" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="UpdateCalendarAtStartup" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MaxCalendarEventFetchesPerCall" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="UpdateResourcesAtStartup" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SimultaniousCalls" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

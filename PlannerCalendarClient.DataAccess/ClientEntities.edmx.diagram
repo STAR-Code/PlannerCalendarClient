@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ba14b6a5c054b7f986035d83e741148" Name="Diagram1">
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.CalendarEvent" Width="1.5" PointX="2.375" PointY="1.375" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.Notification" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.PlannerResource" Width="2.25" PointX="1.5" PointY="6.125" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.ServiceCallReferenceLog" Width="2.25" PointX="7.625" PointY="1.25" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.SyncLog" Width="2.25" PointX="4.625" PointY="0.75" />
+        <AssociationConnector Association="PlannerCalendarClient.DataAccess.FK_SyncLog_CalendarEvent" />
+        <AssociationConnector Association="PlannerCalendarClient.DataAccess.FK_SyncLog_ServiceCallReferenceLog" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.ServiceUserCredential" Width="2.5" PointX="8.375" PointY="6.375" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.Subscription" Width="2.125" PointX="5" PointY="6.125" />
+        <AssociationConnector Association="PlannerCalendarClient.DataAccess.FK_Subscription_ServiceUserCredential" />
+        <AssociationConnector Association="PlannerCalendarClient.DataAccess.PlannerResourceSubscription" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.PlannerResourceWhitelist" Width="3.75" PointX="11.75" PointY="5.875" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.PlannerResourceBlacklist" Width="1.5" PointX="4.375" PointY="9.75" />
+        <EntityTypeShape EntityType="PlannerCalendarClient.DataAccess.NotificationLog" Width="1.5" PointX="13.375" PointY="1.125" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

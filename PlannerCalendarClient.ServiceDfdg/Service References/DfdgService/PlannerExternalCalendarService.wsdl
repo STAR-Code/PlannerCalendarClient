@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:uid="http://microsoft.com/wsdl/types/" xmlns:rumh="http://service.bm.dk/RequestUserMetadata/2015/01/21/" xmlns:tns="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService" xmlns:aoh="http://rep.oio.dk/ams.dk/xml/schemas/2005/09/01/" xmlns:fault="http://service.bm.dk/xml/schemas/2011/01/12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ecs="http://service.bm.dk/PlannerExternalCalendarService/2015/03/27/" xmlns:oces="http://service.bm.dk/RequestMetadata/2010/11/11/" name="PlannerExternalCalendarService" targetNamespace="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <schema xmlns:tns="http://service.bm.dk/RequestMetadata/2010/11/11/" targetNamespace="http://service.bm.dk/RequestMetadata/2010/11/11/">
+      <simpleType name="OCESRIDType">
+        <restriction base="string">
+          <minLength value="1" />
+          <maxLength value="64" />
+        </restriction>
+      </simpleType>
+    </schema>
+    <schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <simpleType name="guid">
+        <restriction base="string">
+          <pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </restriction>
+      </simpleType>
+    </schema>
+    <schema xmlns:ams="http://rep.oio.dk/ams.dk/xml/schemas/2005/09/01/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/ams.dk/xml/schemas/2005/09/01/">
+      <element name="OrganisationTypeIdentifier" type="ams:OrganisationTypeIdentifierType">
+        <annotation>
+          <documentation>
+            Identifies the type of organisation to which the
+            user belongs to.
+          </documentation>
+        </annotation>
+      </element>
+      <simpleType name="OrganisationTypeIdentifierType">
+        <restriction base="int">
+          <minInclusive value="1" />
+          <maxInclusive value="100" />
+        </restriction>
+      </simpleType>
+      <element name="OrganisationCode" type="ams:OrganisationCodeType">
+        <annotation>
+          <documentation>
+            The code that identifies the organisation. It
+            could be a CVR number, an unemploymentfundcode,
+            a municipality code
+          </documentation>
+        </annotation>
+      </element>
+      <simpleType name="OrganisationCodeType">
+        <restriction base="string">
+          <minLength value="1" />
+          <maxLength value="20" />
+        </restriction>
+      </simpleType>
+      <element name="ActiveOrganisationHeader" type="ams:ActiveOrganisationHeaderType">
+        <annotation>
+          <documentation xml:lang="en">
+            This element is used in a SOAP header. It is
+            used for sending the type of organisation and
+            the code of the organisation the user acts as.
+          </documentation>
+        </annotation>
+      </element>
+      <complexType name="ActiveOrganisationHeaderType">
+        <sequence>
+          <element ref="ams:OrganisationTypeIdentifier" />
+          <element ref="ams:OrganisationCode" />
+        </sequence>
+      </complexType>
+    </schema>
+    <schema xmlns:clb="http://service.bm.dk/pjaktass/2013/06/07/CodeListBase/" xmlns:tns="http://service.bm.dk/pjaktass/2015/01/21/OrganisationTypeIdentifierCodeList/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/pjaktass/2015/01/21/OrganisationTypeIdentifierCodeList/">
+      <import namespace="http://service.bm.dk/pjaktass/2013/06/07/CodeListBase/" />
+      <element name="OrganisationTypeIdentifier" type="tns:OrganisationTypeIdentifierType" />
+      <complexType name="OrganisationTypeIdentifierType">
+        <complexContent mixed="false">
+          <extension base="clb:CodeListItemIdentifierType">
+            <sequence />
+          </extension>
+        </complexContent>
+      </complexType>
+    </schema>
+    <schema xmlns:eMail="http://rep.oio.dk/xkom.dk/xml/schemas/2005/03/15/" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/xkom.dk/xml/schemas/2005/03/15/">
+      <element name="EmailAddressIdentifier" type="eMail:EmailAddressIdentifierType" />
+      <simpleType name="EmailAddressIdentifierType">
+        <restriction base="string">
+          <pattern value="([^&gt;\(\)\[\]\\,;:@\s]{0,191}@[^&gt;\(\)\[\]\\,;:@\s]{1,64})" />
+        </restriction>
+      </simpleType>
+    </schema>
+    <schema xmlns:itst="http://rep.oio.dk/itst.dk/xml/schemas/2005/01/10/" elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/itst.dk/xml/schemas/2005/01/10/">
+      <element name="TelephoneNumberIdentifier" type="itst:TelephoneNumberIdentifierType">
+        <annotation>
+          <documentation xml:lang="da">Telefonnummer inkl. internationalt prefix</documentation>
+        </annotation>
+      </element>
+      <simpleType name="TelephoneNumberIdentifierType">
+        <restriction base="string">
+          <pattern value="(\+)?[0-9]{3,20}" />
+        </restriction>
+      </simpleType>
+      <element name="MobileNumberIdentifier" type="itst:TelephoneNumberIdentifierType">
+        <annotation>
+          <documentation xml:lang="da">Mobilnummer inkl. internationalt prefix</documentation>
+        </annotation>
+      </element>
+    </schema>
+    <schema xmlns:tns="http://service.bm.dk/pjaktass/2013/06/07/CodeListBase/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/pjaktass/2013/06/07/CodeListBase/">
+      <complexType name="CodeListItemIdentifierType">
+        <sequence>
+          <element ref="tns:CodeListItemIdentifier" />
+        </sequence>
+      </complexType>
+      <element name="CodeListItemIdentifier" type="tns:CodeListItemIdentifierSimpleType" />
+      <simpleType name="CodeListItemIdentifierSimpleType">
+        <restriction base="int">
+          <minInclusive value="0" />
+          <maxInclusive value="100000000" />
+        </restriction>
+      </simpleType>
+    </schema>
+    <schema xmlns:clb="http://service.bm.dk/pjaktass/2013/06/07/CodeListBase/" xmlns:tns="http://service.bm.dk/pjaktass/2015/01/21/RequestUserTypeIdentifierCodeList/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/pjaktass/2015/01/21/RequestUserTypeIdentifierCodeList/">
+      <import namespace="http://service.bm.dk/pjaktass/2013/06/07/CodeListBase/" />
+      <element name="RequestUserTypeIdentifier" type="tns:RequestUserTypeIdentifierType" />
+      <complexType name="RequestUserTypeIdentifierType">
+        <complexContent mixed="false">
+          <extension base="clb:CodeListItemIdentifierType">
+            <sequence />
+          </extension>
+        </complexContent>
+      </complexType>
+    </schema>
+    <schema xmlns:org="http://service.bm.dk/pjaktass/2015/01/21/OrganisationTypeIdentifierCodeList/" xmlns:tns="http://service.bm.dk/pjaktass/2015/01/21/RequestOrganisationStructure/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/pjaktass/2015/01/21/RequestOrganisationStructure/">
+      <import namespace="http://service.bm.dk/pjaktass/2015/01/21/OrganisationTypeIdentifierCodeList/" />
+      <simpleType name="OrganisationCodeType">
+        <restriction base="string">
+          <pattern value="[-][1]|[0-9]{1,8}" />
+        </restriction>
+      </simpleType>
+      <element name="RequestOrganisationStructure" type="tns:RequestOrganisationStructureType" />
+      <complexType name="RequestOrganisationStructureType">
+        <annotation>
+          <documentation xml:lang="en">
+            Structure that holds information on the requesting organisation.
+            Will usually be the same organisation that the functional certificate is issued to, but can be different if a request is made on behalf of another organisation.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element name="OrganisationTypeIdentifier" type="org:OrganisationTypeIdentifierType" />
+          <element name="OrganisationCode" type="tns:OrganisationCodeType" />
+        </sequence>
+      </complexType>
+    </schema>
+    <schema xmlns:email="http://rep.oio.dk/xkom.dk/xml/schemas/2005/03/15/" xmlns:tns="http://service.bm.dk/pjaktass/2015/01/21/RequestUserStructure/" xmlns:ru="http://service.bm.dk/pjaktass/2015/01/21/RequestUserTypeIdentifierCodeList/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/pjaktass/2015/01/21/RequestUserStructure/">
+      <import namespace="http://service.bm.dk/pjaktass/2015/01/21/RequestUserTypeIdentifierCodeList/" />
+      <import namespace="http://rep.oio.dk/xkom.dk/xml/schemas/2005/03/15/" />
+      <simpleType name="UserFullNameType">
+        <restriction base="string">
+          <minLength value="1" />
+          <maxLength value="140" />
+        </restriction>
+      </simpleType>
+      <simpleType name="UserIdentifierType">
+        <restriction base="string">
+          <minLength value="1" />
+          <maxLength value="255" />
+        </restriction>
+      </simpleType>
+      <element name="RequestUserStructure" type="tns:RequestUserStructureType" />
+      <complexType name="RequestUserStructureType">
+        <annotation>
+          <documentation xml:lang="en">
+            Structure that holds information on the requesting user.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element name="UserFullName" type="tns:UserFullNameType" />
+          <element ref="ru:RequestUserTypeIdentifier" />
+          <element name="UserIdentifier" type="tns:UserIdentifierType" />
+          <element minOccurs="0" name="UserEmail" type="email:EmailAddressIdentifierType" />
+        </sequence>
+      </complexType>
+    </schema>
+    <schema xmlns:tns="http://service.bm.dk/RequestUserMetadata/2015/01/21/" xmlns:rus="http://service.bm.dk/pjaktass/2015/01/21/RequestUserStructure/" xmlns:ros="http://service.bm.dk/pjaktass/2015/01/21/RequestOrganisationStructure/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/RequestUserMetadata/2015/01/21/">
+      <import namespace="http://service.bm.dk/pjaktass/2015/01/21/RequestUserStructure/" />
+      <import namespace="http://service.bm.dk/pjaktass/2015/01/21/RequestOrganisationStructure/" />
+      <element name="RequestUserMetadataHeader" type="tns:RequestUserMetadataType" />
+      <complexType name="RequestUserMetadataType">
+        <annotation>
+          <documentation xml:lang="en">
+            Meta data to be included in the request header of service requests
+          </documentation>
+        </annotation>
+        <sequence>
+          <element ref="rus:RequestUserStructure" />
+          <element ref="ros:RequestOrganisationStructure" />
+          <element name="RegistrationDateTime" type="dateTime" />
+        </sequence>
+      </complexType>
+    </schema>
+    <schema xmlns:tns="http://service.bm.dk/xml/schemas/2011/01/12/" xmlns:s2="http://microsoft.com/wsdl/types/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/xml/schemas/2011/01/12/">
+      <complexType name="FaultDetails">
+        <sequence>
+          <element minOccurs="0" name="ErrorCode" type="int" />
+          <element minOccurs="0" name="Message" nillable="true" type="string" />
+          <element minOccurs="0" name="InnerException" nillable="true" type="string" />
+          <element minOccurs="0" name="StackTrace" nillable="true" type="string" />
+          <element minOccurs="0" name="Source" nillable="true" type="string" />
+        </sequence>
+      </complexType>
+      <element name="FaultDetails" nillable="true" type="tns:FaultDetails" />
+    </schema>
+    <schema xmlns:clb="http://service.bm.dk/pjaktass/2013/06/07/CodeListBase/" xmlns:tns="http://service.bm.dk/PlannerExternalCalendarService/2015/03/27/" xmlns:email="http://rep.oio.dk/xkom.dk/xml/schemas/2005/03/15/" elementFormDefault="qualified" targetNamespace="http://service.bm.dk/PlannerExternalCalendarService/2015/03/27/">
+      <element name="CreateEventsRequest" type="tns:CreateEventsRequestType" />
+      <complexType name="CreateEventsRequestType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="CalendarEvent" type="tns:CalendarEventType" />
+        </sequence>
+      </complexType>
+      <element name="CreateEventsResponse" type="tns:CreateEventsResponseType" />
+      <complexType name="CreateEventsResponseType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="CalendarEventReceipt" type="tns:CalendarEventReceiptType" />
+          <element minOccurs="1" maxOccurs="1" name="ServiceRequestLogReferenceIdentifier" type="uid:guid" />
+        </sequence>
+      </complexType>
+      <element name="UpdateEventsRequest" type="tns:UpdateEventsRequestType" />
+      <complexType name="UpdateEventsRequestType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="CalendarEvent" type="tns:CalendarEventType" />
+        </sequence>
+      </complexType>
+      <element name="UpdateEventsResponse" type="tns:UpdateEventsResponseType" />
+      <complexType name="UpdateEventsResponseType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="CalendarEventReceipt" type="tns:CalendarEventReceiptType" />
+          <element minOccurs="1" maxOccurs="1" name="ServiceRequestLogReferenceIdentifier" type="uid:guid" />
+        </sequence>
+      </complexType>
+      <element name="DeleteEventsRequest" type="tns:DeleteEventsRequestType" />
+      <complexType name="DeleteEventsRequestType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="CalendarEvent" type="tns:CalendarEventType" />
+        </sequence>
+      </complexType>
+      <element name="DeleteEventsResponse" type="tns:DeleteEventsResponseType" />
+      <complexType name="DeleteEventsResponseType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="CalendarEventReceipt" type="tns:CalendarEventReceiptType" />
+          <element minOccurs="1" maxOccurs="1" name="ServiceRequestLogReferenceIdentifier" type="uid:guid" />
+        </sequence>
+      </complexType>
+      <element name="GetEventsRequest" type="tns:GetEventsRequestType" />
+      <complexType name="GetEventsRequestType">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" name="CalendarResource" type="tns:CalendarResourceType" />
+          <element minOccurs="0" maxOccurs="1" name="EventStartFromDateTime" type="dateTime" />
+          <element minOccurs="0" maxOccurs="1" name="EventStartToDateTime" type="dateTime" />
+        </sequence>
+      </complexType>
+      <element name="GetEventsResponse" type="tns:GetEventsResponseType" />
+      <complexType name="GetEventsResponseType">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" name="CalendarEvent" type="tns:CalendarEventType" />
+          <element minOccurs="1" maxOccurs="1" name="ServiceRequestLogReferenceIdentifier" type="uid:guid" />
+        </sequence>
+      </complexType>
+      <element name="GetResourcesRequest" type="tns:GetResourcesRequestType" />
+      <complexType name="GetResourcesRequestType">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" name="EmailAddressIdentifier" type="email:EmailAddressIdentifierType" />
+        </sequence>
+      </complexType>
+      <element name="GetResourcesResponse" type="tns:GetResourcesResponseType" />
+      <complexType name="GetResourcesResponseType">
+        <sequence>
+          <element minOccurs="0" maxOccurs="unbounded" name="CalendarResource" type="tns:CalendarResourceType" />
+          <element minOccurs="1" maxOccurs="1" name="ServiceRequestLogReferenceIdentifier" type="uid:guid" />
+        </sequence>
+      </complexType>
+      <complexType name="CalendarEventType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="CalendarEventStartTime" type="dateTime" />
+          <element minOccurs="1" maxOccurs="1" name="CalendarEventEndTime" type="dateTime" />
+          <element minOccurs="1" maxOccurs="1" name="OriginSystemIdentifier" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="OriginEmailAddress" type="email:EmailAddressIdentifierType" />
+          <element minOccurs="0" maxOccurs="1" name="PlannerResourceIdentifier" type="uid:guid" />
+          <element minOccurs="0" maxOccurs="1" name="CalendarEventIdentifier" type="uid:guid" />
+        </sequence>
+      </complexType>
+      <complexType name="CalendarEventReceiptType">
+        <sequence>
+          <element minOccurs="0" maxOccurs="1" name="PlannerResourceIdentifier" type="uid:guid" />
+          <element minOccurs="1" maxOccurs="1" name="CalendarEventIdentifier" type="uid:guid" />
+          <element minOccurs="1" maxOccurs="1" name="EventReceivalTime" type="dateTime" />
+          <element minOccurs="1" maxOccurs="1" name="EventErrorCode" type="tns:CalendarEventReceiptErrorCodeType" />
+          <element minOccurs="0" maxOccurs="1" name="EventMessage" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="OriginSystemIdentifier" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ConflictNotificationSent" type="boolean" />
+        </sequence>
+      </complexType>
+      <complexType name="CalendarResourceType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="CalendarResourceName" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="RID" type="oces:OCESRIDType" />
+          <element minOccurs="1" maxOccurs="1" name="CalendarResourceEmailAddress" type="email:EmailAddressIdentifierType" />
+          <element minOccurs="0" maxOccurs="1" name="PlannerResourceIdentifier" type="uid:guid" />
+          <element minOccurs="0" maxOccurs="5" name="WorkingHours" type="tns:WorkingHoursType" />
+          <element minOccurs="0" maxOccurs="1" name="CalendarResourceDescription" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="IsCaseWorker" type="boolean" />
+        </sequence>
+      </complexType>
+      <complexType name="PlannerEventType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="PlannerEventIdentification" type="uid:guid" />
+          <element minOccurs="1" maxOccurs="1" name="CalendarResource" type="tns:CalendarResourceType" />
+          <element minOccurs="1" maxOccurs="1" name="EventStartTime" type="dateTime" />
+          <element minOccurs="1" maxOccurs="1" name="EventEndTime" type="dateTime" />
+          <element minOccurs="0" maxOccurs="1" name="EventSummary" type="string" />
+          <element minOccurs="0" maxOccurs="1" name="EventLocation" type="string" />
+          <element minOccurs="0" maxOccurs="1" name="EventDescription" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="WorkingHoursType">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="WorkingHoursWeekday" type="tns:WeekDayIdentifierType" />
+          <element minOccurs="1" maxOccurs="1" name="WorkingHoursStartTime" type="dateTime" />
+          <element minOccurs="1" maxOccurs="1" name="WorkingHoursEndTime" type="dateTime" />
+        </sequence>
+      </complexType>
+      <simpleType name="WeekDayIdentifierType">
+        <restriction base="int">
+          <minInclusive value="1" />
+          <maxInclusive value="7" />
+        </restriction>
+      </simpleType>
+      <element name="CalendarEventReceiptErrorCode" type="tns:CalendarEventReceiptErrorCodeType" />
+      <complexType name="CalendarEventReceiptErrorCodeType">
+        <complexContent mixed="false">
+          <extension base="clb:CodeListItemIdentifierType">
+            <sequence />
+          </extension>
+        </complexContent>
+      </complexType>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="ActiveOrganisationHeader">
+    <wsdl:part name="ActiveOrganisationHeader" element="aoh:ActiveOrganisationHeader" />
+  </wsdl:message>
+  <wsdl:message name="RequestUserMetadataHeader">
+    <wsdl:part name="RequestUserMetadataHeader" element="rumh:RequestUserMetadataHeader" />
+  </wsdl:message>
+  <wsdl:message name="FaultDetails">
+    <wsdl:part name="FaultDetails" element="fault:FaultDetails" />
+  </wsdl:message>
+  <wsdl:message name="CreateEventsRequestMsg">
+    <wsdl:part name="CreateEventsRequest" element="ecs:CreateEventsRequest" />
+  </wsdl:message>
+  <wsdl:message name="CreateEventsResponseMsg">
+    <wsdl:part name="CreateEventsResponse" element="ecs:CreateEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEventsRequestMsg">
+    <wsdl:part name="UpdateEventsRequest" element="ecs:UpdateEventsRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateEventsResponseMsg">
+    <wsdl:part name="UpdateEventsResponse" element="ecs:UpdateEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteEventsRequestMsg">
+    <wsdl:part name="DeleteEventsRequest" element="ecs:DeleteEventsRequest" />
+  </wsdl:message>
+  <wsdl:message name="DeleteEventsResponseMsg">
+    <wsdl:part name="DeleteEventsResponse" element="ecs:DeleteEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsRequestMsg">
+    <wsdl:part name="GetEventsRequest" element="ecs:GetEventsRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetEventsResponseMsg">
+    <wsdl:part name="GetEventsResponse" element="ecs:GetEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetResourcesRequestMsg">
+    <wsdl:part name="GetResourcesRequest" element="ecs:GetResourcesRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetResourcesResponseMsg">
+    <wsdl:part name="GetResourcesResponse" element="ecs:GetResourcesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PlannerExternalCalendarService">
+    <wsdl:operation name="CreateEvents">
+      <wsdl:input name="CreateEventsRequest" message="tns:CreateEventsRequestMsg" />
+      <wsdl:output name="CreateEventsResponse" message="tns:CreateEventsResponseMsg" />
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvents">
+      <wsdl:input name="UpdateEventsRequest" message="tns:UpdateEventsRequestMsg" />
+      <wsdl:output name="UpdateEventsResponse" message="tns:UpdateEventsResponseMsg" />
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvents">
+      <wsdl:input name="DeleteEventsRequest" message="tns:DeleteEventsRequestMsg" />
+      <wsdl:output name="DeleteEventsResponse" message="tns:DeleteEventsResponseMsg" />
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <wsdl:input name="GetEventsRequest" message="tns:GetEventsRequestMsg" />
+      <wsdl:output name="GetEventsResponse" message="tns:GetEventsResponseMsg" />
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <wsdl:input name="GetResourcesRequest" message="tns:GetResourcesRequestMsg" />
+      <wsdl:output name="GetResourcesResponse" message="tns:GetResourcesResponseMsg" />
+      <wsdl:fault name="FaultDetails" message="tns:FaultDetails" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PlannerExternalCalendarServiceBinding" type="tns:PlannerExternalCalendarService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateEvents">
+      <soap:operation soapAction="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService#CreateEvents" />
+      <wsdl:input name="CreateEventsRequest">
+        <soap:body use="literal" parts="CreateEventsRequest" />
+        <soap:header message="tns:RequestUserMetadataHeader" part="RequestUserMetadataHeader" use="literal" />
+        <soap:header message="tns:ActiveOrganisationHeader" part="ActiveOrganisationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateEventsResponse">
+        <soap:body use="literal" parts="CreateEventsResponse" />
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault use="literal" name="FaultDetails" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEvents">
+      <soap:operation soapAction="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService#UpdateEvents" />
+      <wsdl:input name="UpdateEventsRequest">
+        <soap:body use="literal" parts="UpdateEventsRequest" />
+        <soap:header message="tns:RequestUserMetadataHeader" part="RequestUserMetadataHeader" use="literal" />
+        <soap:header message="tns:ActiveOrganisationHeader" part="ActiveOrganisationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateEventsResponse">
+        <soap:body use="literal" parts="UpdateEventsResponse" />
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault use="literal" name="FaultDetails" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteEvents">
+      <soap:operation soapAction="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService#DeleteEvents" />
+      <wsdl:input name="DeleteEventsRequest">
+        <soap:body use="literal" parts="DeleteEventsRequest" />
+        <soap:header message="tns:RequestUserMetadataHeader" part="RequestUserMetadataHeader" use="literal" />
+        <soap:header message="tns:ActiveOrganisationHeader" part="ActiveOrganisationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DeleteEventsResponse">
+        <soap:body use="literal" parts="DeleteEventsResponse" />
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault use="literal" name="FaultDetails" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvents">
+      <soap:operation soapAction="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService#GetEvents" />
+      <wsdl:input name="GetEventsRequest">
+        <soap:body use="literal" parts="GetEventsRequest" />
+        <soap:header message="tns:RequestUserMetadataHeader" part="RequestUserMetadataHeader" use="literal" />
+        <soap:header message="tns:ActiveOrganisationHeader" part="ActiveOrganisationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetEventsResponse">
+        <soap:body use="literal" parts="GetEventsResponse" />
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault use="literal" name="FaultDetails" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <soap:operation soapAction="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService#GetResources" />
+      <wsdl:input name="GetResourcesRequest">
+        <soap:body use="literal" parts="GetResourcesRequest" />
+        <soap:header message="tns:RequestUserMetadataHeader" part="RequestUserMetadataHeader" use="literal" />
+        <soap:header message="tns:ActiveOrganisationHeader" part="ActiveOrganisationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetResourcesResponse">
+        <soap:body use="literal" parts="GetResourcesResponse" />
+      </wsdl:output>
+      <wsdl:fault name="FaultDetails">
+        <soap:fault use="literal" name="FaultDetails" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PlannerExternalCalendarService">
+    <wsdl:port name="PlannerExternalCalendarService" binding="tns:PlannerExternalCalendarServiceBinding">
+      <soap:address location="http://service.bm.dk/pjaktass/1/PlannerExternalCalendarService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
